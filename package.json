@@ -34,7 +34,8 @@
             "google": "google/google.js",
             "googlecalendar": "google/calendar.js",
             "weather": "weather/weather.js",
-            "transport": "transport/tfl-underground.js",
+            "tfl": "transport/tfl.js",
+            "tfl-underground": "transport/tfl-underground.js",
             "forecastio": "forecast/forecastio.js"
         }
     },

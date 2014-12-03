@@ -25,9 +25,11 @@ module.exports = function(RED) {
         RED.nodes.createNode(this, n);
         var node = this;
         node.line = n.line;
-        node.acceptedtcs = n.acceptedtcs;
         
-        if (node.acceptedtcs) {              
+        var credentials = RED.nodes.getCredentials(n.tfl);
+        console.log("credentials: " + credentials + ", acceptedtcs: " + credentials.acceptedtcs);
+        
+        if (credentials.acceptedtcs) {              
             this.on("input", function(msg) {
                 var apiUrl = "http://cloud.tfl.gov.uk/TrackerNet/LineStatus";   
                 request.get(apiUrl,function(err, httpResponse, body) {

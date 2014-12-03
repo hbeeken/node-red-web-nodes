@@ -1,0 +1,58 @@
+<!--
+  Copyright 2014 IBM Corp.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+
+<script type="text/x-red" data-template-name="tfl-credentials">
+       <div class="form-row"">
+            <label>&nbsp;</label>
+            <input type="checkbox" id="node-input-acceptedtcs" style="display: inline-block; width: auto; vertical-align: top;">
+            <label for="node-input-acceptedtcs" style="width: 70%;">I have registered with <a href=https://api-portal.tfl.gov.uk/login target="_blank" style="text-decoration:underline;\">Transport for London</a> to gain access to the live feeds.</label>
+        </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('tfl-credentials',{
+        category: 'config',
+        exportable: false,
+        defaults: {
+            acceptedtcs: {value:"", required:true},
+        },  
+        credentials: {
+            acceptedtcs: { type:"text"}
+        },
+        label: function() {
+            return this.acceptedtcs;
+        },
+        oneditprepare: function() {
+            var id = this.id;
+            
+           $('#node-input-acceptedtcs').click(function() {
+               if ($(this).is(':checked')) {
+                   updateCredentials(true);
+                } else {
+                   updateCredentials(false);
+                }
+           });
+           
+           function updateCredentials(hasAccepted) {
+               // This bit isn't right but I haven't got far enough in testing to make this work...
+               var url = 'tfl-credentials/auth?id='+id+'&acceptedtcs=' +hasAccepted;
+               $(this).attr("href",url);
+           }
+           
+        }
+    });
+</script>

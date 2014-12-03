@@ -13,9 +13,9 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-
 <script type="text/x-red" data-template-name="tfl underground">
-    <div id="node-input-underground">
+
+    <div class="form-row">
         <div class="form-row">
             <label>&nbsp;<i class="fa fa-filter"></i> Get</label>
             the status information for the
@@ -42,12 +42,10 @@
             <input type="text" id="node-input-name">
         </div>
 
-        <div class="form-row"">
+        <div class="form-row" id="node-input-tfl">
             <label>&nbsp;</label>
-            <input type="checkbox" id="node-input-acceptedtcs" style="display: inline-block; width: auto; vertical-align: top;">
-            <label for="node-input-acceptedtcs" style="width: 70%;">I have registered with <a href=https://api-portal.tfl.gov.uk/login target="_blank" style="text-decoration:underline;\">Transport for London</a> to gain access to the live feeds.</label>
         </div>
-    </div>
+
 </script>
 
 <script type="text/x-red" data-help-name="tfl underground">
@@ -68,7 +66,8 @@
     <p>Powered by TfL Open Data.</p>
 </script>
 
-<script type="text/javascript">
+<script type="text/javascript" >
+
 (function() {
     RED.nodes.registerType('tfl underground',{
         category: 'transport',
@@ -76,30 +75,13 @@
         defaults: {
             line: {value:"Bakerloo",required:true},
             name: {value:""},
-            acceptedtcs:{value:false}
+            tfl: {type:"tfl-credentials",required:true}
         },
         inputs:1,
         outputs:1,
         icon: "train.png",
         label: function() {
-            return this.name||'TFL Underground';
-        },
-        oneditprepare: function() {
-            if(this.acceptedtcs) {
-                $('#node-dialog-ok').button("enable");               
-            } else {
-                $('#node-dialog-ok').button("disable");
-            }
-            
-           $('#node-input-acceptedtcs').click(function() {
-               if ($(this).is(':checked')) {
-                   this.acceptedtcs = true;
-                   $('#node-dialog-ok').button("enable");
-                } else {
-                    this.acceptedtcs = false;
-                    $('#node-dialog-ok').button("disable");
-                }
-           });
+            return this.name||'TfL Underground';
         }
     });
 })();
