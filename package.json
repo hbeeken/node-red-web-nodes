@@ -4,6 +4,7 @@
     "description"   : "A collection of Node-RED nodes for popular web services.",
     "dependencies"  : {
         "aws-sdk": "^2.0.15",
+        "bunyan": "1.2.0",
         "dropbox":"^0.10.3",
         "minimatch": "^1.0.0",
         "oauth":"~0.9.11",
@@ -39,7 +40,8 @@
             "tfl-bus": "transport/tfl-bus.js",
             "tfl-underground": "transport/tfl-underground.js",
             "forecastio": "forecast/forecastio.js",
-            "strava": "fitness/strava.js"
+            "strava": "fitness/strava.js",
+            "performance":"performance/performance.js"
         }
     },
     "devDependencies": {

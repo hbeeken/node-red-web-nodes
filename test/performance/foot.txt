@@ -1,0 +1,6 @@
+
+[0m[0m
+[0m  performance tests[0m
+18 Dec 11:50:51 - [red] Starting flows
+trains are good
+  [32m  √[0m[90m  can fetch check-in information [0m[31m(1260ms)[0m
